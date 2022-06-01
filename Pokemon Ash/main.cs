@@ -18,7 +18,6 @@ namespace Pokemon_Ash
             }  
 
             Console.WriteLine(ash.RetornarQuantidadePokemonsCapturados());
-            entrada = Console.ReadLine();
         }
     }
 }
