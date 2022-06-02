@@ -11,44 +11,65 @@ namespace Pokemon_Ash
         private Posicao posicaoAtual;
         private PosicoesVisitadas posicoesVisitadas;
         
-        public Ash()
-        {
+        public Ash(){
             posicaoAtual = new Posicao();
             posicoesVisitadas = new PosicoesVisitadas();
         }
 
-        public void Andar(char sentido)
-        {
-            switch (sentido)
+        public void AndarProNorte(){
+            posicaoAtual.y++;
+            SalvarPosicaoVisitada();
+        }
+
+        public void AndarProSul(){
+            posicaoAtual.y--;
+            SalvarPosicaoVisitada();
+        }
+
+        public void AndarProEste(){
+            posicaoAtual.x++;
+            SalvarPosicaoVisitada();
+        }
+
+        public void AndarProOeste(){
+            posicaoAtual.x--;
+            SalvarPosicaoVisitada();
+        }
+
+        public void Movimentar(string sequencia){
+            foreach (char c in sequencia)
             {
-                case 'N':
-                    posicaoAtual.AdicionarEmY(1);
-                    break;
-                case 'S':
-                    posicaoAtual.AdicionarEmY(-1);
-                    break;
-                case 'E':
-                    posicaoAtual.AdicionarEmX(1);
-                    break;
-                case 'O':
-                    posicaoAtual.AdicionarEmX(-1);
-                    break;
-                default:
-                    break;
+                switch (c)
+                {
+                    case 'N':
+                        AndarProNorte();
+                        break;
+                    case 'S':
+                        AndarProSul();
+                        break;
+                    case 'E':
+                        AndarProEste();
+                        break;
+                    case 'O':
+                        AndarProOeste();
+                        break;
+                    default:
+                        break;
+                }
             }
+        }
+
+        private void SalvarPosicaoVisitada(){
             if (!posicoesVisitadas.ContemPosicao(posicaoAtual))
             {
                 posicoesVisitadas.AdicionarPosicao(posicaoAtual);
             };
-
         }
-        public Posicao RetornarPosicao()
-        {
+        public Posicao RetornarPosicao(){
             return posicaoAtual;
         }
 
-        public int RetornarQuantidadePokemonsCapturados()
-        {
+        public int RetornarQuantidadePokemonsCapturados(){
             return posicoesVisitadas.ObterTamanho();
 
         }

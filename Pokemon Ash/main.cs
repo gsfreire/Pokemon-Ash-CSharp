@@ -8,15 +8,10 @@ namespace Pokemon_Ash
 {
     public class main
     {
-        static void Main(string[] args)
-        {
+        static void Main(){
             Ash ash = new Ash();
-            string entrada = Console.ReadLine();
-            foreach (char c in entrada) {
-                ash.Andar(c);
-                Console.WriteLine(c);
-            }  
-
+            string sequencia = Console.ReadLine();
+            ash.Movimentar(sequencia);
             Console.WriteLine(ash.RetornarQuantidadePokemonsCapturados());
         }
     }

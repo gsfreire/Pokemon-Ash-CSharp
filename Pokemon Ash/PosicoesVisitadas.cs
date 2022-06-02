@@ -10,23 +10,19 @@ namespace Pokemon_Ash
     {
         private List<Posicao> posicoesVisitadas;
 
-        public PosicoesVisitadas()
-        {
+        public PosicoesVisitadas(){
             posicoesVisitadas = new List<Posicao>() { new Posicao() };
         }
 
-        public void AdicionarPosicao(Posicao posicao)
-        {
+        public void AdicionarPosicao(Posicao posicao){
             posicoesVisitadas.Add(new Posicao (posicao));
         }
 
-        public int ObterTamanho()
-        {
+        public int ObterTamanho(){
             return posicoesVisitadas.Count;
         }
 
-        public bool ContemPosicao(Posicao posicao)
-        {
+        public bool ContemPosicao(Posicao posicao){
             return posicoesVisitadas.Contains(new Posicao(posicao), new ComparadorPosicao());
         }
     }
