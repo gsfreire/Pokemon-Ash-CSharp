@@ -5,106 +5,82 @@ namespace TestesUnitarios
     [TestClass]
     public class AshTest
     {
-        [TestMethod]
-        public void AshInicializaNaPosicao00()
-        {
-            var ashTeste = new Ash();
-            var posicaoInicial = new Posicao(0,0);
-            Assert.AreEqual(posicaoInicial.x, ashTeste.RetornarPosicao().x);
-            Assert.AreEqual(posicaoInicial.y, ashTeste.RetornarPosicao().y);
+        Ash ashTeste;
+
+        [TestInitialize]
+        public void TestInitialize(){
+            ashTeste = new Ash();
         }
 
         [TestMethod]
-        public void AshAndaTresVezesProNorteESomaTresUnidadesNaPosicaoY()
-        {
-            var ashTeste = new Ash();
-            var entrada = "NNN";
-            foreach(char c in entrada)
-            {
-                ashTeste.Andar(c);
-            }
-            var posicaoEsperada = new Posicao(0, 3);
-            Assert.AreEqual(posicaoEsperada.x, ashTeste.RetornarPosicao().x);
-            Assert.AreEqual(posicaoEsperada.y, ashTeste.RetornarPosicao().y);
+        public void AshInicializaNaPosicao00Com1Pokemon(){
+            var posicaoInicial = new Posicao(0, 0);
+            int quantidadePokemonEsperada = 1;
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoInicial, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
 
         [TestMethod]
-        public void AshAndaTresVezesProSulESubtraiTresUnidadesNaPosicaoY()
-        {
-            var ashTeste = new Ash();
-            var entrada = "SSS";
-            foreach (char c in entrada)
-            {
-                ashTeste.Andar(c);
-            }
-            var posicaoEsperada = new Posicao(0, -3);
-            Assert.AreEqual(posicaoEsperada.x, ashTeste.RetornarPosicao().x);
-            Assert.AreEqual(posicaoEsperada.y, ashTeste.RetornarPosicao().y);
+        public void AshAndaProNorteEContem2Pokemons(){
+            var posicaoEsperada = new Posicao(0, 1);
+            int quantidadePokemonEsperada = 2;
+
+            ashTeste.AndarProNorte();
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoEsperada, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
 
         [TestMethod]
-        public void AshAndaTresVezesProEsteESomaTresUnidadesNaPosicaoX()
-        {
-            var ashTeste = new Ash();
-            var entrada = "EEE";
-            foreach (char c in entrada)
-            {
-                ashTeste.Andar(c);
-            }
-            var posicaoEsperada = new Posicao(3, 0);
-            Assert.AreEqual(posicaoEsperada.x, ashTeste.RetornarPosicao().x);
-            Assert.AreEqual(posicaoEsperada.y, ashTeste.RetornarPosicao().y);
+        public void AshAndaProSulEContem2Pokemons(){
+            var posicaoEsperada = new Posicao(0, -1);
+            int quantidadePokemonEsperada = 2;
+
+            ashTeste.AndarProSul();
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoEsperada, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
 
         [TestMethod]
-        public void AshAndaTresVezesProOesteESubtraiTresUnidadesNaPosicaoX()
-        {
-            var ashTeste = new Ash();
-            var entrada = "OOO";
-            foreach (char c in entrada)
-            {
-                ashTeste.Andar(c);
-            }
-            var posicaoEsperada = new Posicao(-3, 0);
-            Assert.AreEqual(posicaoEsperada.x, ashTeste.RetornarPosicao().x);
-            Assert.AreEqual(posicaoEsperada.y, ashTeste.RetornarPosicao().y);
+        public void AshAndaProEsteEContem2Pokemons(){
+            var posicaoEsperada = new Posicao(1, 0);
+            int quantidadePokemonEsperada = 2;
+
+            ashTeste.AndarProEste();
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoEsperada, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
 
         [TestMethod]
-        public void AshAndaEmCirculoECapturaQuatroPokemons()
-        {
-            var ashTeste = new Ash();
-            var entrada = "NESO";
-            foreach (char c in entrada)
-            {
-                ashTeste.Andar(c);
-            }
-            Assert.AreEqual(4, ashTeste.RetornarQuantidadePokemonsCapturados());
+        public void AshAndaProOesteEContem2Pokemons(){
+            var posicaoEsperada = new Posicao(-1, 0);
+            int quantidadePokemonEsperada = 2;
+
+            ashTeste.AndarProOeste();
+
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoEsperada, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
 
         [TestMethod]
-        public void AshAndaNorteSulRepetidamente()
-        {
-            var ashTeste = new Ash();
-            var entrada = "NSNSNSNS";
-            foreach (char c in entrada)
-            {
-                ashTeste.Andar(c);
-            }
-            Assert.AreEqual(2, ashTeste.RetornarQuantidadePokemonsCapturados());
+        public void AshAndaEmUmPequenoCirculoEContem4Pokemons(){
+            var posicaoEsperada = new Posicao(0, 0);
+            int quantidadePokemonEsperada = 4;
+            string sequencia = "NESO";
+
+            ashTeste.Movimentar(sequencia);
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoEsperada, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
-
         [TestMethod]
-        public void AshAndaEmUmCaminhoLongo()
+        public void AshAndaSempreVoltaPraPosicaoInicialEContem5Pokemons()
         {
-            var ashTeste = new Ash();
-            int qtdN = 27, qtdE = 99;
+            var posicaoEsperada = new Posicao(0, 0);
+            int quantidadePokemonEsperada = 5;
+            string sequencia = "NSOESNEO";
 
-
-            for (int n = 0; n < qtdN; n++) ashTeste.Andar('N');
-            for (int e = 0; e < qtdE; e++) ashTeste.Andar('E');
-
-            Assert.AreEqual(1 + qtdN + qtdE, ashTeste.RetornarQuantidadePokemonsCapturados());
+            ashTeste.Movimentar(sequencia);
+            Assert.IsTrue(new ComparadorPosicao().Equals(posicaoEsperada, ashTeste.RetornarPosicao()));
+            Assert.AreEqual(quantidadePokemonEsperada, ashTeste.RetornarQuantidadePokemonsCapturados());
         }
     }
 }

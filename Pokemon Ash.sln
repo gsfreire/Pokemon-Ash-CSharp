@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon Ash", "Pokemon Ash\Pokemon Ash.csproj", "{D01559D4-E7CE-484E-8DAD-D708743C2C31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesUnitarios", "TestesUnitarios\TestesUnitarios.csproj", "{43842F51-1455-49F4-A00E-D4793B0D8403}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes", "TestesUnitarios\Testes.csproj", "{43842F51-1455-49F4-A00E-D4793B0D8403}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
